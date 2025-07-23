@@ -10,16 +10,22 @@ const UserProvider = ({ children }) => {
 
     const [users, setUsers] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
-    const [buscador, setBuscador]=useState('')
+    const [buscador, setBuscador] = useState('')
 
     const getData = async () => {
-        let response = await axios.get('https://rickandmortyapi.com/api/character')
-        let data = response.data.results
-        data.forEach(element => {
-            element.isFavorite = false
-        });
-        setUsers(data)
-        setIsLoading(false)
+        try {
+            let response = await axios.get('https://rickandmortyapi.com/api/character')
+            let data = response.data.results
+            data.forEach(element => {
+                element.isFavorite = false
+            });
+            setUsers(data)
+            setIsLoading(false)
+        } catch (error) {
+            console.log(error)
+            setIsLoading(false)
+        }
+
 
     }
 
@@ -43,7 +49,7 @@ const UserProvider = ({ children }) => {
         <UserContext.Provider
             value={
                 {
-                    buscador, 
+                    buscador,
                     setBuscador,
                     isLoading,
                     setIsLoading,

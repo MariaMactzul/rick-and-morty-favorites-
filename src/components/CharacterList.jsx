@@ -4,11 +4,12 @@ import { Container, Row, Col, Spinner, Form } from "react-bootstrap";
 import CharacterCard from "./CharacterCard";
 import { UserContext } from "./context/FavoritesContext";
 import CharacterDetail from "./CharacterDetail";
+import Buscador from './Buscador';
 //Muestra todos los personajes
 
 const CharacterList = () => {
 
-    const { users, isLoading, buscador, setBuscador } = useContext(UserContext)
+    const { users, isLoading, buscador } = useContext(UserContext)
 
     const filtro = users?.filter(item => item.name.toUpperCase().includes(buscador.toUpperCase()))
 
@@ -16,15 +17,10 @@ const CharacterList = () => {
         <>
 
             <Container>
-
-                <Form>
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                        <Form.Label>Buscador</Form.Label>
-                        <Form.Control value={buscador} onChange={(event)=>setBuscador(event.target.value)} type="text" placeholder="busque su personaje" />
-                    </Form.Group>
-                </Form>
-
                 <h1 className="text-center">Ricky and Morty Favorites</h1>
+
+                <Buscador></Buscador>
+
                 {
                     isLoading ?
                         (
