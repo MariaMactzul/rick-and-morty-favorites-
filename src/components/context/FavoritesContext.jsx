@@ -15,6 +15,12 @@ const UserProvider = ({ children }) => {
     const getData = async () => {
         try {
             let response = await axios.get('https://rickandmortyapi.com/api/character')
+            /**
+             * let data = response.data.results.map(element => ({
+                    ...element,
+                    isFavorite: false
+                }))
+             */
             let data = response.data.results
             data.forEach(element => {
                 element.isFavorite = false
@@ -33,6 +39,7 @@ const UserProvider = ({ children }) => {
         getData()
     }, [])
 
+    //value=user.id
     const Cambio = (value) => {
 
         let favoritos = users.map(item => {
