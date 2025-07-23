@@ -17,7 +17,7 @@ const FavoritesPage = () => {
                 <Row>
                     <Col className="d-flex gap-4 flex-wrap justify-content-center" md={12}>
                         {
-                            users.map(item => {
+                            users?.map(item => {
                                 if (item.isFavorite) {
                                     return <CharacterCard
                                         user={item}
